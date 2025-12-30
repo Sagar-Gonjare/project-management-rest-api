@@ -1,0 +1,13 @@
+/target/
+*.class
+*.jar
+*.war
+*.ear
+.metadata/
+.settings/
+.project
+.classpath
+.factorypath
+.recommenders/
+bin/
+.DS_Store
