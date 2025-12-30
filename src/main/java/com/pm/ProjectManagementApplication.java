@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableScheduling
 public class ProjectManagementApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ProjectManagementApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(ProjectManagementApplication.class, args);
+  }
 }

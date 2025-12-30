@@ -1,6 +1,5 @@
 package com.pm.task.repository;
 
-
 import com.pm.enums.TaskPriority;
 import com.pm.enums.TaskStatus;
 import com.pm.task.entity.Tasks;
@@ -9,8 +8,9 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
 public interface TaskSearchRepository extends JpaRepository<Tasks, Long> {
-
-    @Query("""
+  // her e i used Query annotation to use custom query
+  @Query(
+      """
         SELECT t
         FROM Tasks t
         JOIN t.project p
@@ -24,11 +24,10 @@ public interface TaskSearchRepository extends JpaRepository<Tasks, Long> {
           AND (:status IS NULL OR t.status = :status)
           AND (:priority IS NULL OR t.priority = :priority)
         """)
-    Page<Tasks> searchMine(
-            @Param("ownerId") Long ownerId,
-            @Param("q") String q,
-            @Param("status") TaskStatus status,
-            @Param("priority") TaskPriority priority,
-            Pageable pageable
-    );
+  Page<Tasks> searchMine(
+      @Param("ownerId") Long ownerId,
+      @Param("q") String q,
+      @Param("status") TaskStatus status,
+      @Param("priority") TaskPriority priority,
+      Pageable pageable);
 }

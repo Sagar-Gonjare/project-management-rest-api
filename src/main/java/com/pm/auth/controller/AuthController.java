@@ -1,32 +1,31 @@
 package com.pm.auth.controller;
 
-import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.pm.auth.dto.AuthResponse;
 import com.pm.auth.dto.LoginRequest;
 import com.pm.auth.dto.RegisterRequest;
-import com.pm.auth.service.AuthService;
+import com.pm.auth.service.AuthServiceImpll;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final AuthService authService;
+  private final AuthServiceImpll authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+  public AuthController(AuthServiceImpll authServicee) {
+    this.authService = authServicee;
+  }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest req) {
-        authService.register(req);
-        return ResponseEntity.ok().build();
-    }
+  @PostMapping("/register")
+  public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
+    authService.register(request);
+    return ResponseEntity.ok().build();
+  }
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest req) {
-        return ResponseEntity.ok(authService.login(req));
-    }
+  @PostMapping("/login")
+  public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
+    return ResponseEntity.ok(authService.login(request));
+  }
 }
